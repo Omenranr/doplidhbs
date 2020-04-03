@@ -2,82 +2,19 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>frontendv1</title>
-    <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
-    <link rel="stylesheet" href="/static/assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="/static/assets/fonts/ionicons.min.css">
-    <link rel="stylesheet" href="/static/assets/fonts/material-icons.min.css">
-    <link rel="stylesheet" href="/static/assets/css/Article-Clean.css">
-    <link rel="stylesheet" href="/static/assets/css/Elegant-Registration-Form.css">
-    <link rel="stylesheet" href="/static/assets/css/Footer-Basic.css">
-    <link rel="stylesheet" href="/static/assets/css/Header-Blue.css">
-    <link rel="stylesheet" href="/static/assets/css/Highlight-Phone.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
-    <link rel="stylesheet" href="/static/assets/css/Navigation-with-Search.css">
-    <link rel="stylesheet" href="/static/assets/css/Simple-Slider.css">
-    <link rel="stylesheet" href="/static/assets/css/styles.css">
+    {{> iHead}}
 </head>
 
 <body>
-    <header style="background-image: url(&quot;/static/assets/img/john-schnobrich-2FPjlAyMQTA-unsplash.jpg&quot;);background-position: 0% 50%;background-size: 100%;">
-        <nav class="navbar navbar-light navbar-expand-md navigation-clean-search" style="background-color: rgba(255,255,255,0);">
-            <div class="container"><a class="navbar-brand" href="#" style="color: rgb(255,255,255);">Doplib</a><button data-toggle="collapse" class="navbar-toggler border-light" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><i class="fa fa-align-justify" style="color: rgb(255,255,255);"></i></button>
-                <div
-                    class="collapse navbar-collapse" id="navcol-1">
-                    <ul class="nav navbar-nav">
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color: rgb(255,255,255);">à propos</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color: rgb(255,255,255);">contacter</a></li>
-                    </ul><a class="btn btn-light text-uppercase ml-auto action-button" role="button" href="#" style="background-color: rgb(52, 152, 219);">donne ton avis</a></div>
-            </div>
-        </nav>
-        <div></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-9 mx-auto">
-                    <h4 class="text-center mb-5" style="font-size: 30px;margin-top: 10px;color: rgb(255,255,255);"><strong>Partage ton avis et aide des milliers d’étudiants</strong><br></h4>
-                </div>
-                <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-                    <form>
-                        <div class="form-row">
-                            <div class="col-12 col-md-9 mb-2 mb-md-0"><input class="form-control form-control-lg" type="email" placeholder="Rechercher un établissement"></div>
-                            <div class="col-12 col-md-3"><button class="btn btn-secondary btn-block btn-lg" type="link" style="background-color: rgb(60, 70, 107);">rechercher</button></div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="row" style="opacity: 0;height: 80px;"></div>
-        </div>
-    </header>
+    {{> searchHeader}}
     <div class="container">
         <div class="row" style="height: 20px;opacity: 0;"></div>
-        <div class="row">
-            <div class="col">
-                <h4>Commentaires récents</h4>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="row" style="height: 20px;opacity: 0;"></div>
-                <h4>Chaque expérience est enrichissante. Chaque avis aussi.<br></h4>
-                <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide" style="background-image:url(https://placeholdit.imgix.net/~text?txtsize=68&amp;txt=Slideshow+Image&amp;w=1920&amp;h=500);"><img src="/static/assets/img/homeImage.png"></div>
-                        <div class="swiper-slide" style="background-image:url(https://placeholdit.imgix.net/~text?txtsize=68&amp;txt=Slideshow+Image&amp;w=1920&amp;h=500);"><img src="/static/assets/img/homeImage.png"></div>
-                        <div class="swiper-slide" style="background-image:url(https://placeholdit.imgix.net/~text?txtsize=68&amp;txt=Slideshow+Image&amp;w=1920&amp;h=500);"><img src="/static/assets/img/homeImage.png"></div>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
-                </div>
-            </div>
-        </div>
+        {{> searchRecentRatings}}
+        {{> searchSlider}}
         <div class="row" style="height: 20px;opacity: 0;"></div>
         <div class="row">
             <div class="col">
+                <p id="universities"></p>
                 <h4>Chaque expérience est enrichissante. Chaque avis aussi.<br></h4>
                 <p style="color: rgb(122,123,123);">Je n’ai pas eu une expérience positive au Sacré-Cœur. J’y ai été de la maternelle à la terminale, et depuis, j’ai été marqué. Comme l’école se préoccupe beaucoup des mentions et des AP, j’ai l’impression de ne pas être intelligente, car
                     je n’ai pas assisté à beaucoup de ces cours. Je me sens maintenant mal préparée et incapable de me débrouiller dans le monde réel. rée et incapable de me débrouiller dans le monde réel.rée et incapable de me débrouiller dans le monde
@@ -85,23 +22,9 @@
             </div>
         </div>
     </div>
-    <div class="footer-basic">
-        <footer>
-            <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>
-            <ul class="list-inline">
-                <li class="list-inline-item"><a href="#">Home</a></li>
-                <li class="list-inline-item"><a href="#">Services</a></li>
-                <li class="list-inline-item"><a href="#">About</a></li>
-                <li class="list-inline-item"><a href="#">Terms</a></li>
-                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
-            </ul>
-            <p class="copyright">Company Name © 2017</p>
-        </footer>
-    </div>
-    <script src="/static/assets/js/jquery.min.js"></script>
-    <script src="/static/assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
-    <script src="/static/assets/js/Simple-Slider.js"></script>
+    {{> footerBasic}}
+    {{> iJsImport}}
+    <script src="/static/searchPage.js"></script>
 </body>
 
 </html>

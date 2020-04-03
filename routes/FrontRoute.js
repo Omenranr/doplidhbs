@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const UniversityCtrl = require('../controllers/UniversityCtrl')
+const RatingCtrl = require('../controllers/RatingCtrl')
 
 router.get('/', (request, response, next) => {
     response.render('main', {layout:'home'})
@@ -8,9 +9,12 @@ router.get('/', (request, response, next) => {
 
 router.get('/search', (request, response, next) => {
     UniversityCtrl.selectAll(request, response, next)
-                  .then(data => {
-                    response.render('main', {layout:'search', data})
-                  })
+    .then(universities => {
+        RatingCtrl.selectAll(request, response, next)
+        .then(ratings => {
+            response.render('main', {layout:'search', universities, ratings})
+        })
+    })
 })
 
 router.get('/university', (request, response, next) => {
