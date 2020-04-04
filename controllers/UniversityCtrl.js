@@ -9,9 +9,9 @@ exports.selectAll = (req, res, next) => {
 }
 
 exports.select = (req, res, next) => {
-    id = req.query.id
+    id_university = req.query.id_university
     return new Promise( (resolve, reject) => {
-        University.findById(id)
+        University.findById(id_university)
               .then(university => {resolve(university)})
               .catch(err => {reject(err)})
     })

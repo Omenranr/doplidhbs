@@ -3,17 +3,43 @@ const Rating = require('../models/Rating')
 exports.selectAll = (req, res, next) => {
     return new Promise( (resolve, reject) => {
         Rating.find()
-              .then(rating => {resolve(rating)})
-              .catch(err => {reject(err)})
+        .populate('id_university')
+        .populate('id_author')
+        .populate('id_diploma')
+        .exec()
+        .then(rating => {resolve(rating)})
+        .catch(err => {reject(err)})
     })
 }
 
 exports.select = (req, res, next) => {
-    id = req.query.id
+    id_rating = req.query.id_rating
     return new Promise( (resolve, reject) => {
-        Rating.findById(id)
-              .then(rating => {resolve(rating)})
-              .catch(err => {reject(err)})
+        Rating.findById(id_rating)
+        .populate('id_university')
+        .populate('id_author')
+        .populate('id_diploma')
+        .exec()
+        .then(rating => {
+            console.log(rating.id_university)
+            resolve(rating)
+        })
+        .catch(err => {reject(err)})
+    })
+}
+
+exports.selectRecent = (req, res, next) => {
+    limit = parseInt(req.query.limit)
+    console.log(typeof(limit))
+    return new Promise( (resolve, reject) => {
+        console.log("selecting recent")
+        Rating.find().limit(limit).sort({$natural:-1})
+        .populate('id_university')
+        .populate('id_author')
+        .populate('id_diploma')
+        .exec()
+        .then(rating => {resolve(rating)})
+        .catch(err => {reject(err)})
     })
 }
 

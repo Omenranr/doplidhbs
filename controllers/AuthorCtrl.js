@@ -9,9 +9,9 @@ exports.selectAll = (req, res, next) => {
 }
 
 exports.select = (req, res, next) => {
-    id = req.query.object_id
+    id_author = req.query.id_author
     return new Promise( (resolve, reject) => {
-        Author.findById(id)
+        Author.findById(id_author)
               .then(author => {resolve(author)})
               .catch(err => {reject(err)})
     })

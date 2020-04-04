@@ -1,6 +1,16 @@
 const express = require('express')
 const router = express.Router()
 const RatingCtrl = require('../controllers/RatingCtrl')
+const UniversityCtrl = require('../controllers/UniversityCtrl')
+const AuthorCtrl = require('../controllers/AuthorCtrl')
+
+router.get('/selectRecent', (request, response, next) => {
+    console.log("selectRecent")
+    RatingCtrl.selectRecent(request, response, next)
+    .then(ratings => {
+        response.send(ratings)
+    })
+})
 
 //validated
 router.get('/selectAll', (request, response, next) => {
