@@ -2,12 +2,17 @@
 $(document).ready(() => {
     $.get('/api/rating/selectRecent?limit=3', (ratings, status) => {
         console.log(ratings)
-        $('#dateRecRate').text(ratings[0].date)
-        $('#anonymeRecRate').text(ratings[0].id_author.anonyme ? "Anonyme" : ratings[0].id_author.first_name + " "
+        $('#dateRecRate').text(ratings[0].date.substring(0,10))
+        $('#anonymeRecRate').text(ratings[0].id_author.first_name + " "
         + ratings[0].id_author.last_name)
+        $("#RecImage").attr("src", ratings[0].id_university.image)
         $('#univRecRate').text(ratings[0].id_university.name)
-        $('#univAvRate').text(ratings[0].average_rating.value)
-        $('#contentRecRate').text(ratings[0].average_rating.content)
+        $('#RecRating').rating({
+            initialRating: ratings[0].average_rating.value,
+            maxRating: 5,
+            interactive: false,
+        })
+        $('#RecContent').text(ratings[0].average_rating.content)
     })
 })
 
