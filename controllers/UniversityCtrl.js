@@ -58,6 +58,7 @@ exports.insert = (req, res, next) => {
             questions: req.body.questions,
         })
         university.rout = 'university?id_university=' + university._id
+        console.log(university.rout)
         university.save()
                   .then( univ => {
                   resolve("university has been added");

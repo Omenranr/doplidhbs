@@ -24,8 +24,7 @@ router.get('/selectByNameLike', (request, response, next) => {
     console.log(request.query.name_university)
     UniversityCtrl.selectByNameLike(request, response, next)
     .then(data => {
-        result = {items : data}
-        response.send(result)
+        response.send(data)
     })
 })
 

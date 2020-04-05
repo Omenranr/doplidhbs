@@ -10,6 +10,13 @@ router.get('/selectAll', (request, response, next) => {
     })
 })
 
+router.get('/selectByUniversity', (request, response, next) => {
+    DiplomaCtrl.selectByUniversity(request, response, next)
+    .then(data => {
+        response.send(data)
+    })
+})
+
 //validated
 router.get('/selectById', (request, response, next) => {
     console.log(request.query)

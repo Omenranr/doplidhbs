@@ -48,4 +48,3 @@ $(document).ready(() => {
     searchOnFocus : true,
     maxResults : 2,
   })
-;

@@ -5,6 +5,7 @@ const UniversitySchema = new mongoose.Schema({
     website : {type: String},
     address : {type: String},
     image : {type: String},
+    rout : {type: String},
     diplomas: [{
         id_diploma : {type : mongoose.Schema.Types.ObjectId, ref : 'diplomas'},
     }],

@@ -1,0 +1,51 @@
+<p id="id_university" style="display:none;"></p>
+<div id="rateSection0" class="ui raised very padded text container segment">
+<form id="rateauthForm" class="ui form">
+  <h4 class="ui dividing header">Informations sur l'auteur</h4>
+  <div class="field">
+    <label>Nom complet</label>
+    <div class="two fields">
+      <div class="field">
+        <input id="first_name" required="true" type="text" placeholder="Prénom*">
+      </div>
+      <div class="field">
+        <input id="last_name" type="text" required="true" placeholder="Nom*">
+      </div>
+    </div>
+  </div>
+  <div class="field">
+      <label>Nom de l'université*</label>
+      <div id="searchUniv" class="ui search">
+        <div class="ui left icon fluid input">
+          <input required="true" id="searchInput" class="prompt" type="text" placeholder="Etablissement">
+          <i class="university icon"></i>
+        </div>
+      </div>
+  </div>
+  <div  class="field">
+      <label >Nom de la formation*</label>
+      <select required="true" id="id_diploma" class="ui fluid dropdown">
+        <option value="">Formation</option>
+      </select>
+    </div>
+    <div class="field">
+    <label>Adresse email*</label>
+    <input required="true" id="mail_address" type="email" placeholder="Email">
+    </div>
+    <div class="ui segment">
+    <div class="field">
+        <div class="ui toggle checkbox">
+        <input id="anonyme" type="checkbox" name="public">
+        <label>Avis anonyme ? - Votre prénom ne s'affichera pas</label>
+        </div>
+    </div>
+    </div>
+    <div class="field">
+        
+    </div>
+        <button id="suivantSection0" class="ui right labeled icon button" style="color:green;">
+            <i class="right arrow icon"></i>
+            Suivant
+        </button>
+</form>
+</div>

@@ -1,5 +1,6 @@
 const Rating = require('../models/Rating')
 const University = require('../models/University')
+const Author = require('../models/Author')
 
 exports.selectAll = (req, res, next) => {
     return new Promise( (resolve, reject) => {
@@ -73,9 +74,21 @@ exports.selectByUniversity = (req, res, next) => {
 
 exports.insert = (req, res, next) => {
     return new Promise( (resolve, reject) => {
+        console.log(req.body.last_name)
+        const author = new Author({
+            first_name : req.body.first_name,
+            last_name : req.body.last_name,
+            promotion : req.body.promotion,
+            id_university : req.body.id_university,
+            id_diploma : req.body.id_diploma,
+            mail_address : req.body.mail_address,
+            anonyme : req.body.anonyme
+        })
+        author.save()
+        console.log(author._id)
         const rating = new Rating({
             date: Date.now(),
-            id_author: req.body.id_author,
+            id_author: author._id,
             id_university: req.body.id_university,
             id_diploma: req.body.id_diploma,
             average_rating: req.body.average_rating,
@@ -89,7 +102,8 @@ exports.insert = (req, res, next) => {
         .then( rating => {
             University.findById(rating.id_university)
             .then(university => {
-                console.log(rating._id)
+                console.log("rating id"+rating._id)
+                console.log(university.name)
                 university.ratings.push({id_rating : rating._id})
                 university.save()
                 .then(() => {

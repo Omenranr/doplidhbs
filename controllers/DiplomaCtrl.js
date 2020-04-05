@@ -8,6 +8,15 @@ exports.selectAll = (req, res, next) => {
     })
 }
 
+exports.selectByUniversity = (req, res, next) => {
+    id_university = req.query.id_university
+    return new Promise( (resolve, reject) => {
+        Diploma.find({id_university : id_university})
+        .then(diploma => {resolve(diploma)})
+        .catch(err => {reject(err)})
+    })
+}
+
 exports.select = (req, res, next) => {
     id = req.query.object_id
     return new Promise( (resolve, reject) => {
