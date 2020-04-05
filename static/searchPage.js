@@ -11,28 +11,41 @@ $(document).ready(() => {
     })
 })
 
-$('.ui.search')
+// $('.ui.search')
+//   .search({
+//     apiSettings: {
+//         onResponse : (universities) => {
+//             console.log(universities)
+//             response = []
+//             $.each(universities, (index, univ) => {
+//                 temp = {}
+//                 temp.results = univ
+//                 temp.title = univ.name
+//                 temp.url = "/university?id_university="+univ._id
+//                 response.push(temp)
+//             })
+//             console.log()
+//             $("#searchUniv").attr("href", response[0].url)
+//             return response
+//         },
+//         url: '/api/university/selectByNameLike?name_university='+$("#searchInput").val(),
+//     },
+//     minCharacters : 2,
+//     maxResults : 1,
+//   })
+
+  $('.ui.search')
   .search({
     apiSettings: {
-        onResponse : (universities) => {
-            console.log(universities)
-            response = []
-            $.each(universities, (index, univ) => {
-                let maxResults = 5
-                if(index >= maxResults) {return false}
-                temp = {}
-                temp.results = univ
-                temp.title = univ.name
-                temp.url = "/university?id_university="+univ._id
-                response.push(temp)
-            })
-            console.log()
-            $("#searchUniv").attr("href", response[0].url)
-            return response
-        },
-        url: '/api/university/selectAll'
+      url: '/api/university/selectByNameLike?name_university={query}'
     },
-    minCharacters : 3
+    fields: {
+        results : 'items',
+        title   : 'name',
+        url     : 'rout'
+    },
+    minCharacters : 3,
+    searchOnFocus : true,
+    maxResults : 2,
   })
 ;
-

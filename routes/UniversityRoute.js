@@ -20,6 +20,16 @@ router.get('/selectById', (request, response, next) => {
 })
 
 //validated
+router.get('/selectByNameLike', (request, response, next) => {
+    console.log(request.query.name_university)
+    UniversityCtrl.selectByNameLike(request, response, next)
+    .then(data => {
+        result = {items : data}
+        response.send(result)
+    })
+})
+
+//validated
 router.get('/selectByName', (request, response, next) => {
     UniversityCtrl.selectByName(request, response, next)
     .then(data => {

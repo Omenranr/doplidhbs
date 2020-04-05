@@ -8,6 +8,15 @@ exports.selectAll = (req, res, next) => {
     })
 }
 
+exports.selectByNameLike = (req, res, next) => {
+    name_university = req.query.name_university
+    return new Promise((resolve, reject ) => {
+        University.find({'name' : { "$regex": name_university, "$options": "i" }})
+        .then(university => {resolve(university)})
+        .catch(err => {reject(err)})      
+    })
+}
+
 exports.select = (req, res, next) => {
     id_university = req.query.id_university
     return new Promise( (resolve, reject) => {
@@ -48,6 +57,7 @@ exports.insert = (req, res, next) => {
             ratings: req.body.ratings,
             questions: req.body.questions,
         })
+        university.rout = 'university?id_university=' + university._id
         university.save()
                   .then( univ => {
                   resolve("university has been added");
