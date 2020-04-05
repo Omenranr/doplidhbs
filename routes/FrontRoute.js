@@ -20,7 +20,10 @@ router.get('/search', (request, response, next) => {
 router.get('/university', (request, response, next) => {
     //GO SEARCH THE UNIVERSITY INFOS & ALL IT'S RATINGS (GET REQUEST)
     console.log(request.query)
-    response.render('main', {layout:'university'})
+    UniversityCtrl.select(request, response, next)
+    .then(university => {
+        response.render('main', {layout:'university'})
+    })
 })
 
 router.get('/rateauth', (request, response, next) => {

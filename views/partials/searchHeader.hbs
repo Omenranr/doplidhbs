@@ -18,8 +18,16 @@
                 <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
                     <form>
                         <div class="form-row">
-                            <div class="col-12 col-md-9 mb-2 mb-md-0"><input class="form-control form-control-lg" type="email" placeholder="Rechercher un établissement"></div>
-                            <div class="col-12 col-md-3"><button class="btn btn-secondary btn-block btn-lg" type="link" style="background-color: rgb(60, 70, 107);">rechercher</button></div>
+                            <div class="col-12 col-md-9 mb-2 mb-md-0">
+                                {{!-- <input class="form-control form-control-lg" type="email" placeholder="Rechercher un établissement"> --}}
+                                <div class="ui category search">
+                                <div class="ui left icon fluid input">
+                                    <input class="prompt" type="text" placeholder="Rechercher un établissement">
+                                    <i class="university icon"></i>
+                                </div>
+                                </div>                      
+                            </div>
+                            <div class="col-12 col-md-3"><a class="btn btn-secondary btn-block btn-lg" id="searchUniv" href="#" style="background-color: rgb(60, 70, 107);">rechercher</a></div>
                         </div>
                     </form>
                 </div>

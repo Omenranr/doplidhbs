@@ -1,4 +1,5 @@
 const Rating = require('../models/Rating')
+const University = require('../models/University')
 
 exports.selectAll = (req, res, next) => {
     return new Promise( (resolve, reject) => {
@@ -85,15 +86,25 @@ exports.insert = (req, res, next) => {
             pro_rating: req.body.pro_rating,
         })
         rating.save()
-                  .then( rating => {
-                  resolve("rating has been added");
-                })
-                  .catch(err => {reject(err)})
+        .then( rating => {
+            University.findById(rating.id_university)
+            .then(university => {
+                console.log(rating._id)
+                university.ratings.push({id_rating : rating._id})
+                university.save()
+                .then(() => {
+                    resolve("rating has been added");
+                }) 
+            })
+        })
+        .catch(err => {reject(err)})
+
     })
 }
 
 exports.update = (req, res, next)=> {
     return new Promise( (resolve, reject) => {
+        let id_rating = req.body.id_rating
         let date = req.body.date
         let id_author = req.body.id_author
         let id_university = req.body.id_university
@@ -104,7 +115,7 @@ exports.update = (req, res, next)=> {
         let life_rating = req.body.life_rating
         let locals_rating = req.body.locals_rating
         let pro_rating = req.body.pro_rating
-        University.findById(id)
+        Rating.findById(id_rating)
                  .then( rating => {
                     rating.date = date
                     rating.id_author = id_author
