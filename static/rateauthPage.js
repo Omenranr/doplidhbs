@@ -68,7 +68,7 @@ const fillSection3Data = () => {
     average_rating = {}
     pro_rating.value = $('.ui.rating').rating('get rating')[4]
     pro_rating.content = $('#pro_rating').val()
-    average_rating.value = parseInt((values[0]+values[1]+values[2]+values[3]+values[4])/5)
+    average_rating.value = (values[0]+values[1]+values[2]+values[3]+values[4])/5
     average_rating.content = rating.general_rating.content
     promotion = $("#promotion").val()
     
@@ -161,6 +161,7 @@ $("#rateSection3Form").submit((e) => {
         },
         dataType: "json"
       })
+      window.location.replace("/university?id_university="+rating.id_university);
 })
 
 $("#retourSection1").click(() => {

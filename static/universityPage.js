@@ -17,12 +17,14 @@ const addRatingElement = (ratingData, university) => {
     let itemDiv = $("<div class='item' style='margin-top:4%;margin-bottom:4%;'></div>")
     let tinyDiv = $("<div class='ui tiny image'></div>")
     let contentDiv = $("<div class='content'></div>")
-    let headerDiv = $("<div class='header'>"+authorName+"</div>")
+    let headerDiv = $("<div class='header' style='margin-left: 2%;'>"+authorName+"</div>")
+    let ratingDiv = $("<div id='rating2Section1' data-rating='"+ratingData.average_rating.value+"' class='ui yellow rating' data-icon='star'></div>")
     let description = $("<div class='description'></div>")
     let contentPara = $("<p>"+ratingData.average_rating.content+"</p>")
     
     tinyDiv.append($("<img src='"+university.image+"'>"))
     description.append(contentPara)
+    contentDiv.append(ratingDiv)
     contentDiv.append(headerDiv)
     contentDiv.append(description)
     
@@ -36,6 +38,12 @@ const loadUniversityRatings = (university) => {
     for(let i = 0; i < university.ratings.length; i++) {
         $("#ratingCards").append(addRatingElement(university.ratings[i].id_rating, university))
     }
+    $('.ui.rating')
+    .rating({
+        initialRating: 1,
+        maxRating: 5,
+        interactive: false,
+    })
 }
 
 const loadUniversityPage = (university) => {
