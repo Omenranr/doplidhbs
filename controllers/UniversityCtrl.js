@@ -24,9 +24,12 @@ exports.select = (req, res, next) => {
         .populate('diplomas.id_diploma')
         .populate({
             path : 'ratings.id_rating',
-            populate : {
+            populate : [{
                 path : 'id_author',
-            }
+            },
+            {
+                path : 'id_diploma',
+            }]
         })
         .populate('questions.id_question')
         .exec()
