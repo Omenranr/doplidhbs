@@ -12,6 +12,15 @@ const getUrlVars = () =>
     return vars;
 }
 
+const calcGlobalRating = (university) => {
+    let globalRating = 0
+    let ratings = university.ratings
+    for(let i = 0; i < ratings.length; i++) {
+        globalRating += ratings[i].id_rating.average_rating.value
+    }
+    return globalRating/ratings.length
+}
+
 const addRatingElement = (ratingType, ratingValue, ratingContent) => {
     let itemDiv = $("<div class='item' style='margin-top:4%;margin-bottom:4%;'></div>")
     // let tinyDiv = $("<div class='ui tiny image'></div>")
@@ -100,9 +109,7 @@ const loadUniversityRatings = (university) => {
         maxRating: 5,
         interactive: false,
     })
-    $('.ui.progress').progress({
-        percent: 75
-    })
+
     $('.trigger.example .accordion')
     $('.ui.accordion').accordion()
 
@@ -118,6 +125,22 @@ const loadUniversityPage = (university) => {
 
     //load university ratings
     loadUniversityRatings(university)
+
+    //number of ratings
+    $("#numberOfRatings").text(university.ratings.length + " avis")
+
+    //globalRatingStars
+    $("#globalRatingStars").rating('set rating', calcGlobalRating(university))
+
+    //globalRatingNumber
+    $("#globalRatingNumber").text(calcGlobalRating(university).toPrecision(2))
+
+    //global ratings bars
+    $('#fiveStarBar').progress();
+    $('#fourStarBar').progress();
+    $('#threeStarBar').progress();
+    $('#twoStarBar').progress();
+    $('#oneStarBar').progress();
 }
 
 $(document).ready(() => {
