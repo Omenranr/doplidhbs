@@ -67,7 +67,7 @@ const addNewCard = (ratingData, university) => {
     let rateDiv = $("<div style='margin-bottom:2%;' data-rating='"+ratingData.average_rating.value+"' class='ui yellow rating' data-icon='star'></div>")
     let headerDiv = $("<div class='header'>"+authorName+"</div>")
     let metaDiv = $("<div class='meta'></div>")
-    let spanDiv = $("<span id='dateRecRate' class='category'>"+ratingData.date.substring(0,10)+"</span>")
+    let spanDiv = $("<span id='dateRecRate' class='category'>"+ratingData.date.substring(0,10)+" promotion : "+ratingData.id_author.promotion+"</span>")
     let descriptionDiv = $("<div class='description'></div>")
     let paragraphDiv = $("<p>"+ratingData.average_rating.content+"</p>")
 
@@ -88,6 +88,8 @@ const addNewCard = (ratingData, university) => {
 }
 
 const loadUniversityRatings = (university) => {
+
+    console.log(university)
     for(let i = 0; i < university.ratings.length; i++) {
         console.log(i)
         $("#ratingCards").append(addNewCard(university.ratings[i].id_rating, university))
