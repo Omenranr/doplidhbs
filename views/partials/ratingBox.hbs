@@ -1,33 +1,86 @@
+<style>
+    #progressItem {
+        padding: 0.437em;
+    }
+</style>
+
 <div class="col-sm-1">
     <div class="ui four statistics" style="margin-top:50%;">
         <div class="yellow statistic">
             <div class="value">
-            <span id="globalRatingNumber">4.5</span>
+            <span id="globalRatingNumber"></span></span>
             </div>
             <div class="label">
-                <div id="globalRatingStars" style='margin-bottom:2%;' data-rating='4.5' class='ui yellow rating' data-icon='star'>
+                <div id="globalRatingStars" style='margin-bottom:2%;margin-left: -4%;' data-rating='4.5' class='ui yellow rating' data-icon='star'>
                 </div>
-                <p id="numberOfRatings" style="font-size: 0.8em;">test</p>      
+                <p id="numberOfRatings" style="font-size: 0.8em;margin-left: 25%;"></p>      
             </div>
         </div>
     </div>
 </div>
-<div class="col-sm">
-<div class="ui horizontal list">
+<div class="col-sm-1">
+<div class="ui horizontal list" style="margin-top: 30%;">
     <div class="item">
         <div data-rating='5' class='ui yellow rating' data-icon='star'></div>
     </div>
-    <div class="item" style="width:100px;">
-        <div id="oneStarBar" data-percent="74" class="ui yellow progress">
-            <div class="bar"></div>
+    <div class="item" style="width:200px;">
+        <div data-rating='4' class='ui yellow rating' data-icon='star'></div>
+    </div>
+    <div class="item" style="width:200px;">
+        <div data-rating='3' class='ui yellow rating' data-icon='star'></div>
+    </div>
+    <div class="item" style="width:200px;">
+        <div data-rating='2' class='ui yellow rating' data-icon='star'></div>
+    </div>
+    <div class="item" style="width:200px;">
+        <div data-rating='1' class='ui yellow rating' data-icon='star'></div>
+    </div>
+</div>
+</div>
+<div class="col-sm-4">
+    <div class="ui list" style="margin-top:17px;width:50%">
+        <div id="progressItem" class="item">
+            <div class="progress">
+                <div id="fiveStarProgress" class="progress-bar" role="progressbar" aria-valuenow="70"
+                aria-valuemin="0" aria-valuemax="100" style="width:70%;background-color:#ffe21f;">
+                    <span class="sr-only">70% Complete</span>
+                </div>
+            </div>
+        </div>
+        <div id="progressItem" class="item">
+            <div class="progress">
+                <div id="fourStarProgress" class="progress-bar" role="progressbar" aria-valuenow="70"
+                aria-valuemin="0" aria-valuemax="100" style="width:70%;background-color:#ffe21f;">
+                    <span class="sr-only">70% Complete</span>
+                </div>
+            </div>
+        </div>
+        <div id="progressItem" class="item">
+            <div class="progress">
+                <div id="threeStarProgress" class="progress-bar" role="progressbar" aria-valuenow="70"
+                aria-valuemin="0" aria-valuemax="100" style="width:70%;background-color:#ffe21f;">
+                    <span class="sr-only">70% Complete</span>
+                </div>
+            </div>
+        </div>
+        <div id="progressItem" class="item">
+            <div class="progress">
+                <div id="twoStarProgress" class="progress-bar" role="progressbar" aria-valuenow="70"
+                aria-valuemin="0" aria-valuemax="100" style="width:70%;background-color:#ffe21f;">
+                    <span class="sr-only">70% Complete</span>
+                </div>
+            </div>
+        </div>
+        <div id="progressItem" class="item">
+            <div class="progress">
+                <div id="oneStarProgress" class="progress-bar" role="progressbar" aria-valuenow="70"
+                aria-valuemin="0" aria-valuemax="100" style="width:70%;background-color:#ffe21f;">
+                    <span class="sr-only">70% Complete</span>
+                </div>
+            </div>
         </div>
     </div>
+</div>
 
-</div>
-</div>
-{{!-- <div data-rating='5' class='ui yellow rating' data-icon='star'></div>
-<div id="oneStarBar" data-percent="74" class="ui yellow progress">
-    <div class="bar"></div>
-</div> --}}
 
 

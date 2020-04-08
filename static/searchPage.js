@@ -12,6 +12,7 @@ $(document).ready(() => {
             maxRating: 5,
             interactive: false,
         })
+
         $('#RecContent').text(ratings[0].average_rating.content)
         $('#RecAll').attr('href', '/university?id_university='+ratings[0].id_university._id)
     })

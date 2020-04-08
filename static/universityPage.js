@@ -21,6 +21,29 @@ const calcGlobalRating = (university) => {
     return globalRating/ratings.length
 }
 
+const calcRatingBars = (ratingData) => {
+    let progress = [0, 0, 0, 0, 0]
+    for(let i = 0; i < ratingData.length; i++) {
+        avg = ratingData[i].id_rating.average_rating.value
+        if(avg <= 1) {
+            progress[0] += 1
+        }
+        else if(avg > 1 && avg <= 2) {
+            progress[1] += 1
+        }
+        else if(avg > 2 && avg <= 3) {
+            progress[2] += 1
+        }
+        else if(avg > 3 && avg <= 4) {
+            progress[3] += 1
+        }
+        else {
+            progress[4] += 1
+        }
+    }
+    return progress
+}
+
 const addRatingElement = (ratingType, ratingValue, ratingContent) => {
     let itemDiv = $("<div class='item' style='margin-top:4%;margin-bottom:4%;'></div>")
     // let tinyDiv = $("<div class='ui tiny image'></div>")
@@ -103,6 +126,7 @@ const loadUniversityRatings = (university) => {
         console.log(i)
         $("#ratingCards").append(addNewCard(university.ratings[i].id_rating, university))
     }
+
     $('.ui.rating')
     .rating({
         initialRating: 1,
@@ -116,6 +140,14 @@ const loadUniversityRatings = (university) => {
 }
 
 const loadUniversityPage = (university) => {
+
+    //progress initialization
+    let progress = calcRatingBars(university.ratings)
+    $("#fiveStarProgress").width((progress[4] / 5) * 100)
+    $("#fourStarProgress").width((progress[3] / 5) * 100)
+    $("#threeStarProgress").width((progress[2] / 5) * 100)
+    $("#twoStarProgress").width((progress[1] / 5) * 100)
+    $("#oneStarProgress").width((progress[0] / 5) * 100)
 
     //load university official website
     $("#offWebsite").attr("href", "https://"+university.website)
@@ -135,12 +167,6 @@ const loadUniversityPage = (university) => {
     //globalRatingNumber
     $("#globalRatingNumber").text(calcGlobalRating(university).toPrecision(2))
 
-    //global ratings bars
-    $('#fiveStarBar').progress();
-    $('#fourStarBar').progress();
-    $('#threeStarBar').progress();
-    $('#twoStarBar').progress();
-    $('#oneStarBar').progress();
 }
 
 $(document).ready(() => {
