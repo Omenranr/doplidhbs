@@ -1,3 +1,4 @@
+
 //util functions
 const getUrlVars = () =>
 {
@@ -12,9 +13,8 @@ const getUrlVars = () =>
     return vars;
 }
 
-const calcGlobalRating = (university) => {
+const calcGlobalRating = (ratings) => {
     let globalRating = 0
-    let ratings = university.ratings
     for(let i = 0; i < ratings.length; i++) {
         globalRating += ratings[i].id_rating.average_rating.value
     }
@@ -61,7 +61,7 @@ const addRatingElement = (ratingType, ratingValue, ratingContent) => {
     
     // itemDiv.append(tinyDiv)
     itemDiv.append(contentDiv)
-    console.log("finished creating", itemDiv)
+    // console.log("finished creating", itemDiv)
     return itemDiv
 }
 
@@ -79,7 +79,7 @@ const createCompleteRating = (ratingData) => {
     return itemsDiv
 }
 
-const addNewCard = (ratingData, university) => {
+const addNewCard = (ratingData, image) => {
     let accordionDiv = $("<div class='ui inverted accordion'></div>")
     let titleDiv = $("<div class='title' style='color:black;'><i class='dropdown black icon'></i>avis complet</div>")
     let accordionContentDiv = $("<div class='content'></div>")
@@ -91,7 +91,7 @@ const addNewCard = (ratingData, university) => {
 
     let authorName = ratingData.id_author.first_name+" "+ratingData.id_author.last_name
     let cardDiv = $("<div class='ui horizontal fluid card'></div>")
-    let imageDiv = $("<div class='image'><img src='"+university.image+"'></div>")
+    let imageDiv = $("<div class='image'><img src='"+image+"'></div>")
     let contentDiv = $("<div class='content'></div>")
     let extraContentDiv = $("<div class='extra content'></div>")
     let seeAllDiv = $("<div class='left floated author'></div>")
@@ -194,12 +194,11 @@ const addQuestionCard = (questionData, image) => {
     return cardDiv    
 }
 
-const loadUniversityRatings = (university) => {
+const loadUniversityRatings = (ratings, image) => {
 
-    console.log(university)
-    for(let i = 0; i < university.ratings.length; i++) {
-        console.log(i)
-        $("#ratingCards").append(addNewCard(university.ratings[i].id_rating, university))
+    // console.log(university)
+    for(let i = 0; i < ratings.length; i++) {
+        $("#ratingCards").append(addNewCard(ratings[i].id_rating, image))
     }
 
     $('.ui.rating')
@@ -223,6 +222,71 @@ const loadUniversityQuestions = (university) => {
     $('.ui.accordion').accordion()
 }
 
+const loadRatingFilter = (ratings) => {
+    //load diploma data
+    let diplomas = []
+    for(let i = 0; i < ratings.length; i++) {
+        diplomas.push(ratings[i].id_rating.id_diploma.name)
+    }
+    diplomas = Array.from(new Set(diplomas))
+    for(let i = 0; i < diplomas.length; i++) {
+        let diplomaOption = $("<option value='"+diplomas[i]+"'>"+diplomas[i]+"</option>")
+        $("#optionSelect").append(diplomaOption)
+    }
+    //load promotion data
+    let promotions = []
+    for(let i = 0; i < ratings.length; i++) {
+        promotions.push(parseInt(ratings[i].id_rating.id_author.promotion))
+    }
+    promotions.sort()
+    promotions = Array.from(new Set(promotions))
+    for(let i = 0; i < promotions.length; i++) {
+        let promotionOption = $("<option value='"+promotions[i]+"'>"+promotions[i]+"</option>")
+        $("#promotionSelect").append(promotionOption)
+    }
+}
+
+const filterDataRating = (ratingData, rating) => {
+    return ratingData.filter((element) => {
+        return element.id_rating.average_rating.value >= rating && element.id_rating.average_rating.value < parseInt(rating)+1
+    })
+}
+
+const filterDataOption = (ratingData, option) => {
+    return ratingData.filter((element) => {
+        return element.id_rating.id_diploma.name == option 
+    })
+}
+
+const filterDataPromotion = (ratingData, promotion) => {
+    return ratingData.filter((element) => {
+        return element.id_rating.id_author.promotion == promotion
+    })
+}
+
+const fireFilter = (ratings, image) => {
+        //get filter selects data
+        let rating = $("#ratingSelect").val()
+        let option = $("#optionSelect").val()
+        let promotion = $("#promotionSelect").val()
+        let ratingsFiltered = ratings
+        if(option != "") {
+            ratingsFiltered = filterDataOption(ratingsFiltered, option)
+        }
+        if(promotion != "") {
+            console.log(promotion)
+            ratingsFiltered = filterDataPromotion(ratingsFiltered, promotion)
+        }
+        if(rating != "") {
+            console.log(rating)
+            ratingsFiltered = filterDataRating(ratingsFiltered, rating)
+        }
+        $("#ratingCards").empty()
+        loadUniversityRatings(ratingsFiltered, image)
+        console.log(ratings)
+        $("#globalRatingStars").rating('set rating', calcGlobalRating(ratings))
+}
+
 const loadUniversityPage = (university) => {
 
     //progress initialization
@@ -240,7 +304,7 @@ const loadUniversityPage = (university) => {
     $("#universityImage").attr('src', university.image)
 
     //load university ratings
-    loadUniversityRatings(university)
+    loadUniversityRatings(university.ratings, university.image)
 
     //load university questions
     loadUniversityQuestions(university)
@@ -249,18 +313,31 @@ const loadUniversityPage = (university) => {
     $("#numberOfRatings").text(university.ratings.length + " avis")
 
     //globalRatingStars
-    $("#globalRatingStars").rating('set rating', calcGlobalRating(university))
-
+    $("#globalRatingStars").rating('set rating', calcGlobalRating(university.ratings))
+    console.log("set rating stars")
     //globalRatingNumber
-    $("#globalRatingNumber").text(calcGlobalRating(university).toPrecision(2))
+    $("#globalRatingNumber").text(calcGlobalRating(university.ratings).toPrecision(2))
 
+    //load filter data
+    loadRatingFilter(university.ratings)
+
+    //filter on change event handling
+    $("#ratingSelect").change(() => {
+        fireFilter(university.ratings, university.image)
+    })
+    $("#optionSelect").change(() => {
+        fireFilter(university.ratings, university.image)
+    })
+    $("#promotionSelect").change(() => {
+        fireFilter(university.ratings, university.image)
+    })
 }
 let univ_img
 let id_univ
 $(document).ready(() => {
     let id_university = getUrlVars().id_university
     $.get('/api/university/selectById?id_university='+id_university, (university, status) => {
-        console.log(university)
+        // console.log(university)
         loadUniversityPage(university)
         univ_img = university.image
         id_univ = university._id
@@ -296,6 +373,7 @@ $(document).on("click", "button", (event) => {
         console.log(content, dateString)
         let answerDiv = addAnswerElement(dateString, content)
         $("#"+form_id+"_comments").prepend(answerDiv)
+        $("#"+form_id+"_replyContent").val('')
         $.post("/api/answer/insert", data, (result) => {
             console.log(result)
             data2 = {
@@ -359,3 +437,6 @@ $("#questionForm").submit((e) => {
     
     console.log("question form")
 })
+
+
+

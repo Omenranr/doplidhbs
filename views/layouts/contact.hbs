@@ -8,41 +8,55 @@
 	  
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="#">Dop<span>Lid</span></a>
+	      <a class="navbar-brand" href="/search">Dop<span>Lid</span></a>
 	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav nav">
-	          <li class="nav-item"><a href="#" class="nav-link"><span>Home</span></a></li>
+	          <li class="nav-item"><a href="/search" class="nav-link"><span>Home</span></a></li>
 	          <li class="nav-item"><a href="/about" class="nav-link"><span>A propos</span></a></li>
-	          <li class="nav-item"><a href="/contact" class="nav-link"><span>Contact</span></a></li>
+	          <li class="nav-item"><a href="#" class="nav-link"><span>Contact</span></a></li>
 	        </ul>
 	      </div>
 	    </div>
 	  </nav>
-	  <section id="home-section" class="hero">
-		  <div class="home-slider js-fullheight owl-carousel">
-	      <div class="slider-item js-fullheight">
-	      	<div class="overlay"></div>
-	        <div class="container-fluid p-0">
-	          <div class="row d-md-flex no-gutters slider-text js-fullheight align-items-center justify-content-end" data-scrollax-parent="true">
-	          	<div class="one-third order-md-last img js-fullheight" style="background-image:url(/static/dlassets/images/bg_1.jpg);">
-	          		<div class="overlay"></div>
-	          	</div>
-		          <div class="one-forth d-flex js-fullheight align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-		          	<div class="text">
-			            <h1 class="mb-4 mt-3"><span>Une nouvelle façon de trouver sa voie</span></h1>
-			            <p>Une plateforme collaborative qui te permettra de connaître l’avis des personnes qui ont suivi la formation de tes rêves.</p>
-			            
-			            <p><a href="/search" class="btn btn-primary border rounded-0 px-5 py-3 mt-3">LET'S GO</a></p>
-		            </div>
-		          </div>
-	        	</div>
-	        </div>
-	      </div>
-	    </div>
+
+    <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
+      <div class="container">
+      	<div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <h2 class="mb-4">Contact Us</h2>
+          </div>
+        </div>
+        <div class="row no-gutters block-9">
+          <div class="col-md-6 order-md-last d-flex">
+            <form id="contactForm" class="bg-light p-5 contact-form">
+              <div class="form-group">
+                <input required="true" id="contactName" type="text" class="form-control" placeholder="Nom et Prénom">
+              </div>
+              <div class="form-group">
+                <input required="true" id="contactMail" type="email" class="form-control" placeholder="Votre email">
+              </div>
+              <div class="form-group">
+                <input required="true" id="contactObject" type="text" class="form-control" placeholder="Objet">
+              </div>
+              <div class="form-group">
+                <textarea required="true" name="" id="contactMessage" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+              </div>
+              <div class="form-group">
+                <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+              </div>
+            </form>
+          
+          </div>
+
+          <div class="col-md-6 d-flex">
+          	<img src="/static/assets/img/desk.jpg" style="width:100%;">
+          </div>
+        </div>
+      </div>
     </section>
 
   <script src="/static/dlassets/js/jquery.min.js"></script>
@@ -61,6 +75,7 @@
   <script src="/static/dlassets/js/google-map.js"></script>
   
   <script src="/static/dlassets/js/main.js"></script>
+  <script src="/static/contactPage.js"></script>
     
   </body>
 </html>
