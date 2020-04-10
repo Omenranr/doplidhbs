@@ -39,13 +39,13 @@ exports.insert = (req, res, next) => {
     return new Promise( (resolve, reject) => {
         const answer = new Answer({
             // date : req.body.date,
-            id_author: req.body.id_author,
+            date : Date.now(),
             id_question : req.body.id_question,
             content: req.body.content,
         })
         answer.save()
                   .then( answer => {
-                  resolve("answer has been added");
+                  resolve(answer._id);
                 })
                   .catch(err => {reject(err)})
     })

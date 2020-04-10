@@ -30,6 +30,13 @@ router.get('/selectByDiploma', (request, response, next) => {
     })
 })
 
+router.post('/insertAnswer', (request, response, next) => {
+    QuestionCtrl.insertAnswer(request, response, next)
+    .then(data => {
+        response.send(data)
+    })
+})
+
 router.get('/selectByUniversity', (request, response, next) => {
     QuestionCtrl.selectByUniversity(request, response, next)
     .then(data => {

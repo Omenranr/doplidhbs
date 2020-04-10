@@ -45,6 +45,13 @@ router.post('/insert', (request, response, next) => {
 })
 
 //validated
+router.post('/insertQuestion', (request, response, next) => {
+    UniversityCtrl.insertQuestion(request, response, next)
+    .then(data => {
+        response.send(data)
+    })
+})
+//validated
 router.post('/update', (request, response, next) => {
     console.log(request.body)
     UniversityCtrl.update(request, response, next)

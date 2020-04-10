@@ -24,9 +24,13 @@
                     
                     <div id="ratingCards" class="card-columns d-table-row">
                     </div>
+                    <div id="questionCards" class="card-columns d-table-row" style="display:none !important;">
+                        {{> questionForm}}                   
+                    </div>
+                    <div class='row' style="height:20px;"></div>
                 </div>
                 <div class="col-md-4">
-                    <div class="btn-group-vertical btn-group-lg d-inline" role="group"><a id="askQuestion" onclick="changeToQuestion" class="btn btn-success btn-lg text-uppercase text-light border rounded-0" role="button">poser une question</a><a id="offWebsite" class="btn btn-warning btn-lg text-uppercase border rounded-0" target="_blank" role="button" style="margin-top: 2%;margin-bottom: 2%;">site officiel de l'établissement</a></div>
+                    <div class="btn-group-vertical btn-group-lg d-inline" role="group"><a id="askQuestion" class="btn btn-success btn-lg text-uppercase text-light border rounded-0" role="button">Voir les questions</a><a id="offWebsite" class="btn btn-warning btn-lg text-uppercase border rounded-0" target="_blank" role="button" style="margin-top: 2%;margin-bottom: 2%;">site officiel de l'établissement</a></div>
                     <div
                         class="card">
                         <div class="card-body">

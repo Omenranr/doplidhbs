@@ -1,5 +1,5 @@
 const University = require('../models/University')
-
+const mongoose = require('mongoose')
 exports.selectAll = (req, res, next) => {
     return new Promise( (resolve, reject) => {
         University.find()
@@ -31,7 +31,12 @@ exports.select = (req, res, next) => {
                 path : 'id_diploma',
             }]
         })
-        .populate('questions.id_question')
+        .populate({
+            path : 'questions.id_question',
+            populate : {
+                path : 'answers.id_answer',
+            }  
+        })
         .exec()
         .then(university => {resolve(university)})
         .catch(err => {reject(err)})
@@ -67,6 +72,26 @@ exports.insert = (req, res, next) => {
                   resolve("university has been added");
                 })
                   .catch(err => {reject(err)})
+    })
+}
+
+exports.insertQuestion = (req, res, next) => {
+    return new Promise((resolve, reject) => {
+        let id_university = req.body.id_university
+        let id_question = req.body.id_question
+        University.findById(id_university)
+        .then(univ => {
+            console.log(univ.questions)
+            id = mongoose.Types.ObjectId(id_question)
+            univ.questions.push({id_question : id})
+            univ.save()
+            .then(() => {
+                resolve(univ)
+            })
+            .catch((err) => {
+                reject(err)
+            })
+        })
     })
 }
 
