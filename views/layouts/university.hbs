@@ -12,16 +12,34 @@
             <div class="row" style="width: 100%;">
                 <div class="col-md-8" style="background-color: #ffffff;margin-bottom:5%;">
                     <div class="row" style="background-color: #ffffff;">
-                        <div class="col">
+                        
+                        <div id="filtre" class="col">
                             <ul class="nav nav-justified" style="margin-top: 2%;">
                                 <li class="nav-item"><label>Filtrer par :&nbsp;</label></li>
-                                <li class="nav-item"><select><optgroup label="This is a group"><option value="12" selected="">Notes</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></li>
-                                <li class="nav-item"><select><optgroup label="This is a group"><option value="12" selected="">Option</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></li>
-                                <li class="nav-item" style="margin-bottom: 3%;"><select><optgroup label="This is a group"><option value="12" selected="">Promotion</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></li>
+                                <li class="nav-item">
+                                    <select>
+                                        <option value="" selected="">Notes</option>
+                                        <option value="5">5 étoiles</option>
+                                        <option value="4">4 étoiles</option>
+                                        <option value="3">3 étoiles</option>
+                                        <option value="2">2 étoiles</option>
+                                        <option value="1">1 étoiles</option>
+                                    </select>
+                                </li>
+                                <li class="nav-item">
+                                    <select>
+                                        <option value="" selected="">Option</option>
+                                    </select>
+                                </li>
+                                <li class="nav-item">
+                                    <select>
+                                        <option value="" selected="">Promotion</option>
+                                    </select>
+                                </li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div id="nofiltre" class="row" style="display:none;height:4%;"></div>
                     <div id="ratingCards" class="card-columns d-table-row">
                     </div>
                     <div id="questionCards" class="card-columns d-table-row" style="display:none !important;">

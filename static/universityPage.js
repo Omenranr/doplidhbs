@@ -314,16 +314,16 @@ $(document).on("click", "a", (event) => {
     if(id == "askQuestion") {
         if($("#"+id).text() == "Voir les questions") {
             $("#ratingCards").hide()
-            // document.getElementById('#ratingCards').style.display="none !important"
             $("#questionCards").show()
-            // document.getElementById('questionCards').style.display="table-row !important"
+            $("#filtre").hide()
+            $("#nofiltre").show()
             $("#"+id).text("Voir les avis")
         }
         else if($("#"+id).text() == "Voir les avis") {
             $("#ratingCards").show()
             $("#questionCards").hide()
-            // document.getElementById('ratingCards').style.display="table-row !important"
-            // document.getElementById('questionCards').style.display="none !important"
+            $("#filtre").show()
+            $("#nofiltre").hide()
             $("#"+id).text("Voir les questions")
         }
     }
